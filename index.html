@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keizaal Online — New Player Guide</title>
+  <style>
+    :root {
+      --bg:        #0e0c0a;
+      --surface:   #1a1612;
+      --card:      #221e19;
+      --border:    #3a3228;
+      --gold:      #c9a84c;
+      --gold-dim:  #7a6330;
+      --red:       #a83232;
+      --text:      #e8dcc8;
+      --muted:     #8a7f6e;
+      --accent:    #5c8a6e;
+      --tag-bg:    #2a2218;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', 'Palatino Linotype', serif;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(180deg, #0a0806 0%, var(--surface) 100%);
+      border-bottom: 2px solid var(--gold-dim);
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+    }
+    header .rune { font-size: 2.5rem; letter-spacing: .5rem; color: var(--gold-dim); margin-bottom: .5rem; }
+    header h1 { font-size: 2.6rem; color: var(--gold); letter-spacing: .12em; text-transform: uppercase; }
+    header .subtitle { color: var(--muted); font-style: italic; margin-top: .4rem; font-size: 1rem; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem 1.5rem;
+      justify-content: center;
+    }
+    nav a {
+      color: var(--gold-dim);
+      text-decoration: none;
+      font-size: .85rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 3rem; }
+    section h2 {
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: .5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    section h2 .ico { font-size: 1.2rem; }
+
+    section h3 {
+      color: var(--gold-dim);
+      font-size: 1rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin: 1.25rem 0 .5rem;
+    }
+
+    p { margin-bottom: .75rem; color: var(--text); }
+
+    /* ── CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.1rem 1.2rem;
+    }
+    .card h4 {
+      color: var(--gold);
+      font-size: .95rem;
+      margin-bottom: .5rem;
+      letter-spacing: .05em;
+    }
+    .card p, .card li { font-size: .9rem; color: var(--muted); }
+    .card ul { padding-left: 1.2rem; }
+    .card li { margin-bottom: .2rem; }
+
+    /* ── WARNING / TIP BANNERS ── */
+    .banner {
+      border-radius: 6px;
+      padding: .9rem 1.2rem;
+      margin-bottom: 1rem;
+      font-size: .92rem;
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+    .banner.warn  { background: #2a1a1a; border-left: 3px solid var(--red); }
+    .banner.tip   { background: #162219; border-left: 3px solid var(--accent); }
+    .banner.info  { background: #1e1c12; border-left: 3px solid var(--gold-dim); }
+    .banner .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+    .banner p { margin: 0; color: var(--text); }
+
+    /* ── COMMAND TABLE ── */
+    .cmd-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .cmd-table th {
+      text-align: left;
+      color: var(--gold-dim);
+      border-bottom: 1px solid var(--border);
+      padding: .5rem .75rem;
+      font-weight: normal;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    .cmd-table td { padding: .5rem .75rem; border-bottom: 1px solid #2a261e; vertical-align: top; }
+    .cmd-table tr:last-child td { border-bottom: none; }
+    .cmd-table code {
+      background: var(--tag-bg);
+      color: var(--gold);
+      padding: .1rem .4rem;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: .85rem;
+    }
+    .cmd-table td:nth-child(2) { color: var(--muted); }
+
+    /* ── PROFESSION GRID ── */
+    .prof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: .85rem;
+    }
+    .prof-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .prof-card .emoji { font-size: 2rem; display: block; margin-bottom: .4rem; }
+    .prof-card h4 { color: var(--gold); font-size: .95rem; margin-bottom: .35rem; }
+    .prof-card p { font-size: .82rem; color: var(--muted); }
+
+    /* ── TAG PILLS ── */
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .75rem;
+      padding: .15rem .55rem;
+      border-radius: 20px;
+      letter-spacing: .04em;
+    }
+    .tag.gold { border-color: var(--gold-dim); color: var(--gold-dim); }
+
+    /* ── NUMBERED STEPS ── */
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 1rem;
+      margin-bottom: .85rem;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step);
+      background: var(--gold-dim);
+      color: var(--bg);
+      font-size: .8rem;
+      font-weight: bold;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: .2rem;
+    }
+    .steps li p { margin: 0; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── LOOM GALLERY ── */
+    .loom-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 1.25rem;
+    }
+    .ltab {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: .35rem .9rem;
+      border-radius: 20px;
+      font-family: 'Georgia', serif;
+      font-size: .82rem;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .04em;
+    }
+    .ltab:hover { border-color: var(--gold-dim); color: var(--text); }
+    .ltab.active { background: var(--gold-dim); border-color: var(--gold-dim); color: var(--bg); font-weight: bold; }
+
+    .loom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: .85rem;
+    }
+    .loom-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color .2s, transform .15s;
+      cursor: default;
+    }
+    .loom-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+    .loom-card.hidden { display: none; }
+    .loom-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+    .loom-info {
+      padding: .55rem .65rem;
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+    }
+    .loom-name {
+      color: var(--gold);
+      font-size: .82rem;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+    .loom-slot {
+      font-size: .68rem;
+      padding: .1rem .4rem;
+      border-radius: 10px;
+      align-self: flex-start;
+      font-style: normal;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .misc-tag  { background: #2a2030; color: #a07ac0; border: 1px solid #503060; }
+    .head-tag  { background: #1a2030; color: #6a9fd8; border: 1px solid #304060; }
+    .body-tag  { background: #1e2818; color: #7ab878; border: 1px solid #3a5830; }
+    .feet-tag  { background: #2a1e12; color: #c8904a; border: 1px solid #603820; }
+    .hands-tag { background: #281a18; color: #c06050; border: 1px solid #602828; }
+    .legs-tag  { background: #201820; color: #b080a0; border: 1px solid #503040; }
+    .loom-req {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+    .loom-val {
+      font-size: .7rem;
+      color: var(--gold-dim);
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      padding: 1.5rem;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox-inner {
+      position: relative;
+      max-width: min(700px, 90vw);
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: default;
+      box-shadow: 0 0 60px rgba(0,0,0,.8);
+    }
+    #lightbox-inner img {
+      width: 100%;
+      display: block;
+    }
+    #lightbox-caption {
+      padding: .75rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+    #lightbox-caption .lb-name {
+      color: var(--gold);
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: .25rem;
+    }
+    #lightbox-caption .lb-req {
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    #lightbox-close {
+      position: absolute;
+      top: .6rem;
+      right: .75rem;
+      background: rgba(0,0,0,.6);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 1.2rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color .2s, border-color .2s;
+      z-index: 2;
+    }
+    #lightbox-close:hover { color: var(--gold); border-color: var(--gold-dim); }
+    .lb-arrow {
+      background: rgba(20,16,10,.75);
+      border: 1px solid var(--border);
+      color: var(--gold-dim);
+      font-size: 1.6rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color .2s, border-color .2s, background .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-arrow:hover { color: var(--gold); border-color: var(--gold-dim); background: rgba(40,30,10,.9); }
+    .lb-counter {
+      display: block;
+      text-align: right;
+      color: var(--gold-dim);
+      font-size: .75rem;
+      margin-top: .25rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .card-grid, .prof-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="rune">᛫ ᚲ ᛖ ᛁ ᛉ ᚨ ᚨ ᛚ ᛫</div>
+  <h1>Keizaal Online</h1>
+  <p class="subtitle">New Player Guide &mdash; Serious Roleplay on Skyrim</p>
+</header>
+
+<nav>
+  <a href="#start">Getting Started</a>
+  <a href="#professions">Professions</a>
+  <a href="#economy">Economy</a>
+  <a href="#housing">Housing</a>
+  <a href="#combat">Combat & Gear Loss</a>
+  <a href="#social">Social & RP</a>
+  <a href="#commands">Commands</a>
+  <a href="#tips">Tips</a>
+  <a href="#drinks">Drinks</a>
+  <a href="#loom">Loom Recipes</a>
+
+</nav>
+
+<main>
+
+  <!-- ═══════════════════════════════ GETTING STARTED ═══════════════════════════════ -->
+  <section id="start">
+    <h2><span class="ico">⚔️</span> Getting Started</h2>
+
+    <div class="banner info">
+      <span class="icon">📜</span>
+      <p>Keizaal Online is a <strong>serious roleplay</strong> project — not an MMO. The economy, professions, and social systems are designed for RP interaction, not solo grinding.</p>
+    </div>
+
+    <h3>Your First Login</h3>
+    <ul class="steps">
+      <li><p>An <strong>onboarding menu</strong> will appear, explaining the rules, lore, and how to begin. Read it carefully.</p></li>
+      <li><p>On your first character you receive a <strong>pickaxe, an axe, and 50 septims</strong> to get you started.</p></li>
+      <li><p>By default your <strong>name is hidden</strong> from everyone. Press <strong>X</strong> (default key) to introduce yourself via the context menu before others can know who you are.</p></li>
+      <li><p>Open your <strong>Skills menu (K)</strong> to pick a profession and track your Exhaustion Timer.</p></li>
+      <li><p>The <strong>compass is disabled</strong> by default. You can re-enable it in the launcher settings.</p></li>
+    </ul>
+
+    <h3>You Have Two Characters</h3>
+    <p>Each account supports <strong>two characters</strong>. If you want to try a different profession or playstyle, use your second slot rather than burning your reset. You also have <strong>one profession reset</strong> per character (available at the Guardian Stones near Riverwood).</p>
+
+    <h3>Carry Weight</h3>
+    <p>Your default carry weight is <strong>200</strong>. Backpacks increase this. Keep an eye on what you pick up — over-encumbrance is very real.</p>
+  </section>
+
+  <!-- ═══════════════════════════════ PROFESSIONS ═══════════════════════════════ -->
+  <section id="professions">
+    <h2><span class="ico">🛠️</span> Professions</h2>
+
+    <div class="banner warn">
+      <span class="icon">⚠️</span>
+      <p><strong>Workbenches are locked to their profession.</strong> You cannot mine unless you are a Miner, forge unless you are a Blacksmith, cook unless you are a Cook, etc. Choose wisely — you only get one reset per character.</p>
+    </div>
+
+    <div class="prof-grid">
+      <div class="prof-card">
+        <span class="emoji">⛏️</span>
+        <h4>Miner</h4>
+        <p>Mines ore veins. Ore depletes and replenishes over time. Pickaxes can break on lower-tier ores.</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">🪓</span>
+        <h4>Woodcutter</h4>
+        <p>Chops firewood. Higher levels yield more firewood per chop.</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">🔨</span>
+        <h4>Blacksmith</h4>
+        <p>Forges weapons and armor. Access to forges and workbenches. Craft higher-tier items for XP multipliers (up to 3×).</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">🌾</span>
+        <h4>Farmer</h4>
+        <p>Only farmers can gather crops (wheat, cabbage, etc.). Whitelisted farming system.</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">🍖</span>
+        <h4>Cook</h4>
+        <p>Uses cooking pots and ovens. Exhausted cooks cannot craft.</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">🧵</span>
+        <h4>Tailor</h4>
+        <p>Uses the Loom to craft clothes. Master Tailors can perform face sculpts (costs 400 septims). Exhausted tailors cannot craft.</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">🏹</span>
+        <h4>Hunter</h4>
+        <p>Only hunters can loot animals (not creatures). Must set mastery as Hunter first.</p>
+      </div>
+      <div class="prof-card">
+        <span class="emoji">⚔️</span>
+        <h4>Warrior</h4>
+        <p>The strongest PvP/PvE profession. +25 Stamina at Advanced, Expert, and Master (+75 total). <em>Not designed for solo play</em> — meant for guards, legions, bandits, mercenaries.</p>
+      </div>
+    </div>
+
+    <h3>Exhaustion</h3>
+    <p>Every XP gain <strong>exhausts</strong> your character. While exhausted you earn no XP (e.g., a Hunter won't gain XP killing NPCs). Your Exhaustion Timer is visible in the Skills menu (<strong>K</strong>). Crafting professions also <strong>cannot craft</strong> while exhausted.</p>
+
+    <h3>XP Multipliers</h3>
+    <p>Crafting professions earn up to <strong>3× XP</strong> for crafting higher-tier items. Always aim for the best tier you can manage.</p>
+
+    <h3>Resetting Your Profession</h3>
+    <p>Visit the <strong>Guardian Stones near Riverwood</strong>. You get <strong>one reset per character</strong> — it resets both your profession and your XP. Use it wisely.</p>
+  </section>
+
+  <!-- ═══════════════════════════════ ECONOMY ═══════════════════════════════ -->
+  <section id="economy">
+    <h2><span class="ico">💰</span> Economy & Trade</h2>
+
+    <div class="banner tip">
+      <span class="icon">💡</span>
+      <p>Because workbenches are profession-locked, <strong>trade between players is essential</strong>. A Blacksmith needs ore from Miners; a Cook needs crops from Farmers. Seek out other professions early.</p>
+    </div>
+
+    <h3>Jobs (Steady Income)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🌾 Haybale Delivery</h4>
+        <ul>
+          <li>Rewards: 2 wheat + 2 septims per delivery</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🪵 Firewood Delivery — Solitude</h4>
+        <ul>
+          <li>Delivers firewood in Solitude</li>
+          <li>Shared cooldown with other jobs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🪵 Firewood Delivery — Windhelm</h4>
+        <ul>
+          <li>Same as Solitude job</li>
+          <li>Shared cooldown with Solitude job</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Carriages (Fast Travel)</h3>
+    <p>Carriages are available in all major cities plus <strong>Winterhold</strong> and <strong>Dawnstar</strong>. Carriage prices have been increased — save up before travelling.</p>
+
+    <h3>Notice Boards</h3>
+    <p>Check the <strong>Notice Boards</strong> in Solitude, Whiterun, Riften, and Windhelm for jobs and announcements. Still a work in progress.</p>
+
+    <h3>Resources at a Glance</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🧂 Salt Piles</h4>
+        <p>5–10 per deposit (buffed). Used in alchemy and cooking.</p>
+      </div>
+      <div class="card">
+        <h4>⛏️ Ore Veins</h4>
+        <p>Deplete and replenish over time. Ebony mining is currently <strong>disabled</strong>.</p>
+      </div>
+      <div class="card">
+        <h4>💊 Skooma</h4>
+        <p>Reworked with travel-like effects. KZL Skooma is unique and balanced. Old Skooma forms are now useless.</p>
+      </div>
+    </div>
+
+    <h3>Notable Recipes</h3>
+    <table class="cmd-table" style="margin-top:.5rem">
+      <thead>
+        <tr><th>Item</th><th>Recipe</th><th>Requirement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cure Disease Potion</td><td>3 Garlic + 5 Slaughterfish Eggs + 7 Grass Pod</td><td>Alchemist Lv 00</td></tr>
+        <tr><td>Amethyst</td><td>1 Sapphire + 1 Ruby</td><td>Alchemist Lv 20</td></tr>
+        <tr><td>Skyguard Gear</td><td>Steel, Silver, Leather, Leather Strips + Skyguard Forge Manual</td><td>Any forge</td></tr>
+        <tr><td>Apprentice–Master Robes</td><td>Craftable (see Loom)</td><td>Tailor</td></tr>
+        <tr><td>Skeever (recipe)</td><td>Linked to book — find the book first</td><td>Cook</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════ HOUSING ═══════════════════════════════ -->
+  <section id="housing">
+    <h2><span class="ico">🏠</span> Housing & Lockpicking</h2>
+
+    <h3>Getting a House</h3>
+    <ul class="steps">
+      <li><p>Find the <strong>Jarl</strong> of the hold you want to live in. Only the Jarl of that hold can grant you a house.</p></li>
+      <li><p><strong>Stewards</strong> (appointed by Jarls) can also grant/revoke houses and chest access on their behalf.</p></li>
+      <li><p>Once granted, you are the <strong>Owner</strong>. You can add <strong>Guests</strong> via the Property Management Menu.</p></li>
+    </ul>
+
+    <h3>Doors & Locks</h3>
+    <div class="banner info">
+      <span class="icon">🔑</span>
+      <p>Every locked house and chest uses a <strong>master lock</strong>. Owners (and Guests) must <strong>manually unlock their door</strong> to enter and lock it again when they leave. Use <code>/lockhouse</code> to lock from inside.</p>
+    </div>
+    <p>Lockpicking is available for those who want to attempt entry. Exploits have been patched — don't bother trying.</p>
+
+    <h3>Chests</h3>
+    <p>All chest interactions are <strong>logged</strong>. The "Take All" bug has been fixed — items will no longer disappear. Owners can manage guest chest access through the Property Management Menu.</p>
+  </section>
+
+  <!-- ═══════════════════════════════ COMBAT & GEAR LOSS ═══════════════════════════════ -->
+  <section id="combat">
+    <h2><span class="ico">🗡️</span> Combat & Gear Loss</h2>
+
+    <div class="banner warn">
+      <span class="icon">⚠️</span>
+      <p>Death has real consequences. You <strong>will</strong> drop items when killed by a player or NPC. Do not carry anything irreplaceable into dangerous situations.</p>
+    </div>
+
+    <h3>Gear Loss on Death</h3>
+    <ul>
+      <li>Up to <strong>2 items</strong> may drop from your inventory (can be 0 or 1 as well).</li>
+      <li>Lower probability of ingredients dropping; higher probability of <strong>equipment</strong> dropping.</li>
+      <li>Up to <strong>10% of your septims</strong> are lootable.</li>
+      <li>Your coin pouch visually reflects how much gold you carry — <em>bandits may notice</em>.</li>
+    </ul>
+
+    <h3>Safe Zone</h3>
+    <p><strong>Windhelm's Pit</strong> does not cause any gear loss if you die inside it.</p>
+
+    <h3>Restoration Spells</h3>
+    <p>Restoration spells have been fixed — they <strong>heal you properly</strong> and <strong>ignore armor</strong>. Carry potions and healing spells when adventuring.</p>
+
+    <h3>Dungeons</h3>
+    <p>NPCs spawn only when you are <strong>close to them</strong> (optimised for performance). Chests inside dungeons give a <strong>random number of items and random gold</strong>.</p>
+  </section>
+
+  <!-- ═══════════════════════════════ SOCIAL & RP ═══════════════════════════════ -->
+  <section id="social">
+    <h2><span class="ico">🎭</span> Social & Roleplay</h2>
+
+    <h3>Identity</h3>
+    <p>Everyone's name is <strong>hidden by default</strong>. Press <strong>X</strong> to open the context menu and introduce yourself. You must introduce yourself before others can know your character's name — and vice versa.</p>
+
+    <h3>Disguises</h3>
+    <p>Use <code>/disguise</code> to hide your identity visually. Vampires can use <code>/vamp</code> to toggle their vampire appearance to prevent metagaming — if you see a vampire with facial features visible, you may act on it in-character.</p>
+
+    <h3>Voice Chat Modes</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🔇 Whisper</h4>
+        <p>Very short range. Use for private conversations.</p>
+      </div>
+      <div class="card">
+        <h4>🗣️ Local (Default)</h4>
+        <p>Normal proximity range for general RP.</p>
+      </div>
+      <div class="card">
+        <h4>📢 Yell</h4>
+        <p>Extended range. Use sparingly — it carries far.</p>
+      </div>
+    </div>
+    <p style="margin-top:.75rem">Voice chat also includes <strong>lip sync</strong> (mouths may occasionally stay open — speaking again fixes it). RMS normalisation means all players sound roughly the same volume.</p>
+
+    <h3>Chat Channels</h3>
+    <table class="cmd-table">
+      <thead><tr><th>Channel</th><th>Command</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Global OOC</td><td><code>/ooc</code></td><td>3-minute delay on messages. Can be disabled in chatbox settings.</td></tr>
+        <tr><td>Local OOC</td><td><code>/l</code></td><td>Out-of-character, proximity only.</td></tr>
+        <tr><td>Chatbox settings</td><td>—</td><td>You can disable global chat entirely here.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Governance (Jarls, Guards, Stewards)</h3>
+    <ul>
+      <li><strong>Jarls</strong> control their hold: they can add Guards, grant/revoke houses in their hold, and appoint Stewards.</li>
+      <li><strong>Guards</strong> can cuff and uncuff players.</li>
+      <li><strong>Stewards</strong> can manage house and chest access on behalf of the Jarl.</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════ COMMANDS ═══════════════════════════════ -->
+  <section id="commands">
+    <h2><span class="ico">💬</span> Player Commands</h2>
+    <p style="color:var(--muted); font-size:.88rem; margin-bottom:1rem">All commands support <strong>chat autocomplete</strong> — start typing and suggestions will appear.</p>
+
+    <table class="cmd-table">
+      <thead>
+        <tr><th>Command</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>/l</code></td><td>Local OOC chat (proximity only)</td></tr>
+        <tr><td><code>/ooc</code></td><td>Global OOC chat (3-minute send delay)</td></tr>
+        <tr><td><code>/disguise</code></td><td>Toggle your disguise appearance</td></tr>
+        <tr><td><code>/vamp</code></td><td>Toggle vampire facial features on/off (vampires only)</td></tr>
+        <tr><td><code>/lockhouse</code></td><td>Lock your house door from the inside (owners only)</td></tr>
+        <tr><td><strong>X (key)</strong></td><td>Open context menu to introduce yourself / interact with others</td></tr>
+        <tr><td><strong>K (key)</strong></td><td>Open Skills menu (professions, exhaustion timer)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════ TIPS ═══════════════════════════════ -->
+  <section id="tips">
+    <h2><span class="ico">✨</span> New Player Tips</h2>
+
+    <div class="banner tip">
+      <span class="icon">💡</span>
+      <p><strong>Pick a crafting or gathering profession first.</strong> Warrior is powerful but is meant for group RP (guards, bandits, mercenaries) — solo warriors have no economy role.</p>
+    </div>
+
+    <div class="banner tip">
+      <span class="icon">💡</span>
+      <p><strong>Don't over-carry gold.</strong> Your coin pouch size is visible to other players. Keep valuables in your locked chest at home.</p>
+    </div>
+
+    <div class="banner tip">
+      <span class="icon">💡</span>
+      <p><strong>Introduce yourself early.</strong> Nobody can see your name until you do. Starting interactions with "you are a stranger to me" is fully supported mechanically.</p>
+    </div>
+
+    <div class="banner tip">
+      <span class="icon">💡</span>
+      <p><strong>Find your Jarl quickly</strong> if you want a house. Only the Jarl of a hold can grant you property in that hold.</p>
+    </div>
+
+    <div class="banner warn">
+      <span class="icon">⚠️</span>
+      <p><strong>Save your profession reset.</strong> You get exactly one per character. Try your chosen profession for a while before deciding to reset.</p>
+    </div>
+
+    <div class="banner info">
+      <span class="icon">📍</span>
+      <p><strong>Guardian Stones are near Riverwood</strong> — that is where you go to reset your profession if needed.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <h3>Key Locations</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>🪨 Guardian Stones</h4>
+        <p>Near Riverwood. Profession reset mechanic.</p>
+        <div class="tags"><span class="tag">Riverwood</span></div>
+      </div>
+      <div class="card">
+        <h4>📋 Notice Boards</h4>
+        <p>Jobs and announcements in all 4 major cities.</p>
+        <div class="tags"><span class="tag">Solitude</span><span class="tag">Whiterun</span><span class="tag">Riften</span><span class="tag">Windhelm</span></div>
+      </div>
+      <div class="card">
+        <h4>🏟️ Windhelm Pit</h4>
+        <p>No gear loss on death. Good for early combat practice.</p>
+        <div class="tags"><span class="tag gold">Safe Zone</span></div>
+      </div>
+      <div class="card">
+        <h4>🪵 Kiln</h4>
+        <p>Located in Ivarstead (moved from Shor's Stone).</p>
+        <div class="tags"><span class="tag">Ivarstead</span></div>
+      </div>
+      <div class="card">
+        <h4>🍺 Inns</h4>
+        <p>Riverwood Tavern, Drunken Huntsman, Bee and Barb (Riften), Mixwater Worker's House — all available for rest.</p>
+      </div>
+      <div class="card">
+        <h4>🏰 Castle Volkihar</h4>
+        <p>Now accessible via Icewater Jetty. Contains a museum and library.</p>
+        <div class="tags"><span class="tag">Vampire RP</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ DRINKS ═══════════════════════════════ -->
+  <section id="drinks">
+    <h2><span class="ico">🍺</span> Drinks (Alchemy)</h2>
+
+    <div class="banner warn">
+      <span class="icon">📍</span>
+      <p>The <strong>only open alchemy table</strong> is in <strong>Windhelm</strong>. All three drinks below require <strong>Alchemy 15</strong>.</p>
+    </div>
+
+    <div class="banner info">
+      <span class="icon">⚠️</span>
+      <p>All drinks <strong>slow Stamina regeneration by 30% for 30 seconds</strong> as a side effect — plan accordingly in combat.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h4>🍺 Ale</h4>
+        <p style="color:var(--muted); font-size:.8rem; margin-bottom:.5rem">Weight 0.5 &nbsp;·&nbsp; Value 5</p>
+        <ul>
+          <li>Restore <strong>10</strong> Stamina</li>
+          <li>Stamina regen 30% slower for 30s</li>
+          <li>+5 Heavy Armor skill for 30s</li>
+          <li>+5 Light Armor skill for 30s</li>
+        </ul>
+        <div style="margin-top:.75rem; padding-top:.6rem; border-top:1px solid var(--border); font-size:.82rem; color:var(--gold-dim);">
+          Recipe: 2 Lavender + 5 Wheat
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>🍯 Nord Mead</h4>
+        <p style="color:var(--muted); font-size:.8rem; margin-bottom:.5rem">Weight 0.5 &nbsp;·&nbsp; Value 5</p>
+        <ul>
+          <li>Restore <strong>5</strong> Stamina</li>
+          <li>Stamina regen 30% slower for 30s</li>
+          <li>+10 Carry Capacity for 180s</li>
+          <li>Resist 2% Frost for 180s</li>
+        </ul>
+        <div style="margin-top:.75rem; padding-top:.6rem; border-top:1px solid var(--border); font-size:.82rem; color:var(--gold-dim);">
+          Recipe: 2 Snowberries + 5 Honey
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>🍷 Wine</h4>
+        <p style="color:var(--muted); font-size:.8rem; margin-bottom:.5rem">Weight 0.5 &nbsp;·&nbsp; Value 7</p>
+        <ul>
+          <li>Restore <strong>15</strong> Stamina</li>
+          <li>Stamina regen 30% slower for 30s</li>
+          <li>Resist 5% Frost for 60s</li>
+        </ul>
+        <div style="margin-top:.75rem; padding-top:.6rem; border-top:1px solid var(--border); font-size:.82rem; color:var(--gold-dim);">
+          Recipe: 3 Frost Mirriam + 8 Jazbay Grapes
+        </div>
+      </div>
+
+    </div>
+
+    <h3>Ingredient Sources</h3>
+    <table class="cmd-table" style="margin-top:.5rem">
+      <thead><tr><th>Ingredient</th><th>Where to find</th></tr></thead>
+      <tbody>
+        <tr><td>Wheat</td><td>Farm outside Whiterun (haybale job rewards it, also found on the ground)</td></tr>
+        <tr><td>Jazbay Grapes</td><td>Farm outside Whiterun Hold city</td></tr>
+        <tr><td>Lavender</td><td>Wild — common in Whiterun Hold fields</td></tr>
+        <tr><td>Snowberries</td><td>Wild — found in colder regions (Winterhold, Eastmarch)</td></tr>
+        <tr><td>Honey</td><td>Farm outside Whiterun Hold, or purchased / looted from mead halls</td></tr>
+        <tr><td>Frost Mirriam</td><td>Wild — northern regions</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════ LOOM RECIPES ═══════════════════════════════ -->
+  <section id="loom">
+    <h2><span class="ico">🧵</span> Loom Recipes (Weaving Loom)</h2>
+
+    <div class="banner info">
+      <span class="icon">🪡</span>
+      <p>Only <strong>Tailors</strong> can use the Weaving Loom. Almost everything requires <strong>Thread</strong> — craft that first. Use the filter tabs below to browse by slot.</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="loom-tabs" id="loomTabs">
+      <button class="ltab active" onclick="filterLoom('all')">All</button>
+      <button class="ltab" onclick="filterLoom('misc')">🪡 Thread</button>
+      <button class="ltab" onclick="filterLoom('head')">🎩 Head</button>
+      <button class="ltab" onclick="filterLoom('body')">👘 Body</button>
+      <button class="ltab" onclick="filterLoom('feet')">👢 Feet</button>
+      <button class="ltab" onclick="filterLoom('hands')">🧤 Hands</button>
+      <button class="ltab" onclick="filterLoom('legs')">👖 Legs</button>
+    </div>
+
+    <div class="loom-grid" id="loomGrid">
+
+      <!-- ── THREAD (MISC) ── -->
+      <div class="loom-card" data-cat="misc">
+        <img src="loom/thread-red-mtn-flower.png" alt="Thread" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Thread</span>
+          <span class="loom-slot misc-tag">Misc</span>
+          <span class="loom-req">5 Red Mountain Flower</span>
+          <span class="loom-val">Value: 10 · Wt: 0.1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="misc">
+        <img src="loom/thread-purple-mtn-flower.png" alt="Thread" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Thread</span>
+          <span class="loom-slot misc-tag">Misc</span>
+          <span class="loom-req">5 Purple Mountain Flower</span>
+          <span class="loom-val">Value: 10 · Wt: 0.1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="misc">
+        <img src="loom/thread-blue-mtn-flower.png" alt="Thread" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Thread</span>
+          <span class="loom-slot misc-tag">Misc</span>
+          <span class="loom-req">5 Blue Mountain Flower</span>
+          <span class="loom-val">Value: 10 · Wt: 0.1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="misc">
+        <img src="loom/thread-yellow-mtn-flower.png" alt="Thread" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Thread</span>
+          <span class="loom-slot misc-tag">Misc</span>
+          <span class="loom-req">5 Yellow Mountain Flower</span>
+          <span class="loom-val">Value: 10 · Wt: 0.1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="misc">
+        <img src="loom/thread-tundra-cotton.png" alt="Thread" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Thread</span>
+          <span class="loom-slot misc-tag">Misc</span>
+          <span class="loom-req">2 Tundra Cotton</span>
+          <span class="loom-val">Value: 10 · Wt: 0.1</span>
+        </div>
+      </div>
+
+      <!-- ── HEAD ── -->
+      <div class="loom-card" data-cat="head">
+        <img src="loom/black-cowl.png" alt="Black Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Black Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/blue-cowl.png" alt="Blue Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Blue Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/brown-cowl.png" alt="Brown Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Brown Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/chefs-hat.png" alt="Chef's Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Chef's Hat</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/cowl.png" alt="Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/fine-hat.png" alt="Fine Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Hat</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 25 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/green-cowl.png" alt="Green Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Green Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/grey-cowl.png" alt="Grey Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Grey Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/hat-white.png" alt="Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hat (White)</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/hat-felt-brown.png" alt="Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hat (Felt Brown)</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 4 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/hat-leather.png" alt="Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hat (Leather)</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/hat-grey-patched.png" alt="Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hat (Grey Patched)</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/monk-cowl.png" alt="Monk Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Monk Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/mourners-hat.png" alt="Mourner's Hat" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Mourner's Hat</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/necromancer-cowl.png" alt="Necromancer Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Necromancer Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/ragged-cap.png" alt="Ragged Cap" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Ragged Cap</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="head">
+        <img src="loom/red-cowl.png" alt="Red Cowl" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Red Cowl</span>
+          <span class="loom-slot head-tag">Head</span>
+          <span class="loom-req">2 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+
+      <!-- ── BODY ── -->
+      <div class="loom-card" data-cat="body">
+        <img src="loom/belted-tunic.png" alt="Belted Tunic" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Belted Tunic</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/black-robes.png" alt="Black Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Black Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/blacksmiths-apron.png" alt="Blacksmith's Apron" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Blacksmith's Apron</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 3 Thread</span>
+          <span class="loom-val">Value: 8 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/blue-robes.png" alt="Blue Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Blue Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/brown-robes.png" alt="Brown Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Brown Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/chefs-tunic.png" alt="Chef's Tunic" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Chef's Tunic</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 8 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-grey-vest.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Grey Vest)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-brown-vest.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Brown Vest)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-belt-grey.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Belt Grey)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-belt-green.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Belt Green)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-ochre.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Ochre)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-leather-suspenders.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Leather Suspenders)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 4 Thread</span>
+          <span class="loom-val">Value: 10 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-belt-tan.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Belt Tan)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-leather-gold.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Leather Gold)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 4 Thread</span>
+          <span class="loom-val">Value: 10 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-belt-yellow.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Belt Yellow)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-green-hood.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (Green Hood)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/clothes-white-shirt.png" alt="Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Clothes (White Shirt)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/fine-clothes-robe-brown.png" alt="Fine Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Clothes (Robe Brown)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 5 Thread</span>
+          <span class="loom-val">Value: 35 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/fine-clothes-noble-blue.png" alt="Fine Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Clothes (Noble Blue)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 5 Thread</span>
+          <span class="loom-val">Value: 45 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/fine-clothes-robe-grey.png" alt="Fine Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Clothes (Robe Grey)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 5 Thread</span>
+          <span class="loom-val">Value: 50 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/fine-clothes-noble-green.png" alt="Fine Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Clothes (Noble Green)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Leather, 5 Thread</span>
+          <span class="loom-val">Value: 40 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/green-robes.png" alt="Green Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Green Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/grey-robes.png" alt="Grey Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Grey Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-black-robes.png" alt="Hooded Black Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Black Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-blue-robes.png" alt="Hooded Blue Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Blue Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-brown-robes.png" alt="Hooded Brown Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Brown Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-green-robes.png" alt="Hooded Green Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Green Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-grey-robes.png" alt="Hooded Grey Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Grey Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-monk-robes.png" alt="Hooded Monk Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Monk Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-necromancer-robes.png" alt="Hooded Necromancer Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Necromancer Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/hooded-red-robes.png" alt="Hooded Red Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Hooded Red Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/miners-clothes-a.png" alt="Miner's Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Miner's Clothes (A)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/miners-clothes-b.png" alt="Miner's Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Miner's Clothes (B)</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/monk-robes.png" alt="Monk Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Monk Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/mourners-clothes.png" alt="Mourner's Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Mourner's Clothes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/necromancer-robes.png" alt="Necromancer Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Necromancer Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/ragged-robes.png" alt="Ragged Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Ragged Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/red-robes.png" alt="Red Robes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Red Robes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 5 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/reinforced-mantle.png" alt="Reinforced Mantle" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Reinforced Mantle</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Iron Ingot, 2 Leather Strips, 10 Thread</span>
+          <span class="loom-val">Value: 30 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/roughspun-tunic.png" alt="Roughspun Tunic" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Roughspun Tunic</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="body">
+        <img src="loom/tavern-clothes.png" alt="Tavern Clothes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Tavern Clothes</span>
+          <span class="loom-slot body-tag">Body</span>
+          <span class="loom-req">4 Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+
+      <!-- ── FEET ── -->
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-grey-worn.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Grey Worn)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">2 Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-brown-worn.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Brown Worn)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-dark-leather.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Dark Leather)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-tall-gold.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Tall Gold)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-tall-brown.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Tall Brown)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-brown-v4.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Brown)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">2 Leather, Thread</span>
+          <span class="loom-val">Value: 4 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-green.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Green)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-dark-v4.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Dark)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 4 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-tan-v3.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Tan)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 3 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/boots-court-v4.png" alt="Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Boots (Court)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 4 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/fine-boots-tall.png" alt="Fine Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Boots (Tall)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">2 Leather, 3 Thread</span>
+          <span class="loom-val">Value: 25 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/fine-boots-dark.png" alt="Fine Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Fine Boots (Dark)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">2 Leather, 3 Thread</span>
+          <span class="loom-val">Value: 20 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/footwraps.png" alt="Footwraps" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Footwraps</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/ragged-boots.png" alt="Ragged Boots" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Ragged Boots</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/shoes-flat.png" alt="Shoes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Shoes (Flat)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 0</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/shoes-heeled.png" alt="Shoes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Shoes (Heeled)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+      <div class="loom-card" data-cat="feet">
+        <img src="loom/shoes-dark.png" alt="Shoes" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Shoes (Dark)</span>
+          <span class="loom-slot feet-tag">Feet</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 2 · Wt: 1</span>
+        </div>
+      </div>
+
+      <!-- ── HANDS ── -->
+      <div class="loom-card" data-cat="hands">
+        <img src="loom/gloves.png" alt="Gloves" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Gloves</span>
+          <span class="loom-slot hands-tag">Hands</span>
+          <span class="loom-req">Leather, Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 0.5</span>
+        </div>
+      </div>
+
+      <!-- ── LEGS ── -->
+      <div class="loom-card" data-cat="legs">
+        <img src="loom/ragged-trousers.png" alt="Ragged Trousers" loading="lazy">
+        <div class="loom-info">
+          <span class="loom-name">Ragged Trousers</span>
+          <span class="loom-slot legs-tag">Legs</span>
+          <span class="loom-req">Thread</span>
+          <span class="loom-val">Value: 1 · Wt: 1</span>
+        </div>
+      </div>
+
+    </div><!-- /loom-grid -->
+  </section>
+
+  <!-- ═══════════════════════════════ PERSONAL JOURNAL ═══════════════════════════════ -->
+
+</main>
+
+<footer>
+  Keizaal Online New Player Guide &mdash; compiled from patch notes Feb–May 2026 &mdash; Not an official document
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lb-prev" class="lb-arrow" onclick="event.stopPropagation(); navigateLightbox(-1)">&#8592;</button>
+  <div id="lightbox-inner" onclick="event.stopPropagation()">
+    <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-caption">
+      <span class="lb-name" id="lightbox-name"></span>
+      <span class="lb-req" id="lightbox-req"></span>
+      <span class="lb-counter" id="lb-counter"></span>
+    </div>
+  </div>
+  <button id="lb-next" class="lb-arrow" onclick="event.stopPropagation(); navigateLightbox(1)">&#8594;</button>
+</div>
+
+<script>
+function filterLoom(cat) {
+  document.querySelectorAll('.ltab').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.loom-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// Lightbox
+let currentIndex = 0;
+
+function getVisibleCards() {
+  return [...document.querySelectorAll('.loom-card:not(.hidden)')];
+}
+
+function openLightbox(card, cards) {
+  const img  = card.querySelector('img');
+  const name = card.querySelector('.loom-name').textContent;
+  const req  = card.querySelector('.loom-req').textContent;
+  const val  = card.querySelector('.loom-val').textContent;
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = name;
+  document.getElementById('lightbox-name').textContent = name;
+  document.getElementById('lightbox-req').textContent = 'Requires: ' + req + '   ·   ' + val;
+  currentIndex = cards.indexOf(card);
+  updateNavButtons(cards);
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateNavButtons(cards) {
+  document.getElementById('lb-prev').style.opacity = currentIndex > 0 ? '1' : '0.25';
+  document.getElementById('lb-next').style.opacity = currentIndex < cards.length - 1 ? '1' : '0.25';
+  document.getElementById('lb-counter').textContent = (currentIndex + 1) + ' / ' + cards.length;
+}
+
+function navigateLightbox(dir) {
+  const cards = getVisibleCards();
+  const next = currentIndex + dir;
+  if (next < 0 || next >= cards.length) return;
+  openLightbox(cards[next], cards);
+}
+
+document.querySelectorAll('.loom-card').forEach(card => {
+  card.style.cursor = 'zoom-in';
+  card.addEventListener('click', () => openLightbox(card, getVisibleCards()));
+});
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowRight')  navigateLightbox(1);
+  if (e.key === 'ArrowLeft')   navigateLightbox(-1);
+});
+</script>
+</body>
+</html>
